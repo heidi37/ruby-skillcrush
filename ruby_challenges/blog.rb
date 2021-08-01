@@ -1,13 +1,15 @@
-blog_posts_array=[]
-
 class Blog
 
+    @@blog_posts_array=[]
     @@total_blog_posts = 0
 
     def initialize
         @@total_blog_posts +=1
     end
 
+    def self.current_count
+        puts "There are currently #{@@total_blog_posts} created."
+    end
 
 
 class BlogPost < Blog
@@ -49,27 +51,25 @@ end
 
 puts "Do you want to create a new blog post? [Y/N]"
 
-new_post = gets.upcase
+new_post = gets.upcase.chomp
 
-puts new_post
-
-if (new_post == 'Y')
+if new_post == "Y"
 
     puts "Blog author:"
-    blog_author=gets
+    blog_author=gets.chomp
 
     puts "Blog title:"
-    blog_title=gets
+    blog_title=gets.chomp
 
     puts "Blog content:"
-    blog_content=gets
+    blog_content=gets.chomp
 
-    purs "Blog publishdate:"
-    blog_publish_date=gets
+    puts "Blog publish_date:"
+    blog_publish_date=gets.chomp
 
-    blog_posts_array.push(blog_author, blog_title, blog_content, blog_publish_date)
+    @@blog_posts_array.push(blog_author, blog_title, blog_content, blog_publish_date)
 
-end
+    puts @@blog_posts_array.join(", ")
 
 else
     puts "Have a nice Day!"
@@ -77,6 +77,5 @@ end
 
 end
 
-puts blog_posts_array
 
 
